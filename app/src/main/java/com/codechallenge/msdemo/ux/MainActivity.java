@@ -1,10 +1,11 @@
-package com.codechallenge.msdemo;
+package com.codechallenge.msdemo.ux;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-import com.codechallenge.msdemo.fragment.LoginFragment;
+import com.codechallenge.msdemo.R;
+import com.codechallenge.msdemo.ux.LoginFragment;
 
 public class MainActivity extends AppCompatActivity {
 

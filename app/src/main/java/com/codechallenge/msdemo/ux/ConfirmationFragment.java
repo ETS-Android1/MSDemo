@@ -1,4 +1,4 @@
-package com.codechallenge.msdemo.fragment;
+package com.codechallenge.msdemo.ux;
 
 import android.os.Bundle;
 

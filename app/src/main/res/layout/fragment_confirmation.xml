@@ -48,7 +48,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="10dp"
                 android:autoLink="web"
                 android:textColorLink="#198CE6" />
 
@@ -79,7 +79,7 @@
             android:layout_marginBottom="36dp"
             android:background="@drawable/style_button"
             android:stateListAnimator="@null"
-            android:text="Submit"
+            android:text="Sign in"
             android:textAllCaps="false"
             android:textColor="#FFF"
             android:textSize="15sp"

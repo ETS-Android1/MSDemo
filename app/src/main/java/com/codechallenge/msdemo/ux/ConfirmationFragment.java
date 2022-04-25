@@ -12,12 +12,15 @@ import android.widget.TextView;
 
 import com.codechallenge.msdemo.R;
 
+/**
+ * ConfirmationFragment is used to confirm user input information, it obtains the bundle object from LoginFragment,
+ * obtains the corresponding user input content from it, and presents it on the corresponding UI component.
+ */
 public class ConfirmationFragment extends Fragment {
     // Data
     private String firstName;
     private String emailAddress;
     private String websiteAddress;
-    private Uri imageAvatarUri;
 
     // UI
     private TextView textViewTitle;
@@ -41,7 +44,6 @@ public class ConfirmationFragment extends Fragment {
             firstName = getArguments().containsKey("name") ? getArguments().getString("name") : firstName;
             emailAddress = getArguments().containsKey("email") ? getArguments().getString("email") : "";
             websiteAddress = getArguments().containsKey("website") ? getArguments().getString("website") : "";
-            imageAvatarUri = getArguments().containsKey("uri") ? Uri.parse(getArguments().getString("uri")) : null;
         }
     }
 
@@ -53,7 +55,10 @@ public class ConfirmationFragment extends Fragment {
         initUi(view);
         return view;
     }
-
+    /**
+     * Initialize fragment related UI.
+     * @param view Fragment root view.
+     */
     private void initUi(View view){
         textViewTitle = view.findViewById(R.id.text_view_title_name);
         textViewEmail = view.findViewById(R.id.text_view_email_address);

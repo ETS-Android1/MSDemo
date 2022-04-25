@@ -19,6 +19,10 @@ import com.codechallenge.msdemo.R;
 import com.codechallenge.msdemo.present.LoginController;
 import com.codechallenge.msdemo.util.InputStatus;
 
+/**
+ * LoginFragment is the first interactive scene, its main function is to use the input information of the mobile phone user,
+ * check whether the user's input information is valid, and pass the user's input data to ConfirmationFragment.
+ */
 public class LoginFragment extends Fragment {
 
     private LoginController loginController;
@@ -32,7 +36,6 @@ public class LoginFragment extends Fragment {
     private GradientDrawable gradientDrawableDefault;
     private Button buttonSubmit;
     public LoginFragment() {
-        // Required empty public constructor
         loginController = new LoginController();
     }
 
@@ -51,7 +54,7 @@ public class LoginFragment extends Fragment {
     }
 
     /**
-     *
+     * Initialize fragment related UI and listener.
      * @param view Fragment root view.
      */
 
@@ -80,7 +83,7 @@ public class LoginFragment extends Fragment {
     }
 
     /**
-     * EditText view styles
+     * Initialize EditText View styles.
      * Warming: gradientDrawableRed
      * Default: gradientDrawableDefault
      */
@@ -95,6 +98,11 @@ public class LoginFragment extends Fragment {
         gradientDrawableDefault.setStroke(8, Color.rgb(236, 236, 236));
     }
 
+    /**
+     * changeEditTextStyle used to change Email(EditText) and Password(EditText) background style based on current result of user input data evaluated.
+     * Present toast to show the input data error reasons.
+     * @param inputStatus current result of user input data evaluated.
+     */
     private void changeEditTextStyle(InputStatus inputStatus){
         switch (inputStatus) {
             case PASSED:
@@ -107,17 +115,25 @@ public class LoginFragment extends Fragment {
                 break;
             case PASSWORD_ERROR:
                 editTextPassword.setBackground(gradientDrawableRed);
-                Toast.makeText(getContext(),"Password required and length must be 8-16",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"Password required and length must be 8 ~ 16",Toast.LENGTH_SHORT).show();
                 break;
             case EMAIL_PASSWORD_ERROR:
                 editTextEmailAddress.setBackground(gradientDrawableRed);
                 editTextPassword.setBackground(gradientDrawableRed);
-                Toast.makeText(getContext(),"Required Email and password",Toast.LENGTH_SHORT).show();
+                Toast.makeText(getContext(),"Required valid Email and password",Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;
         }
     }
+
+    /**to to
+     * jumpNextFragment is used to create a bundle instance, store the user's input data into the bundle and send it to the next fragment while building a simple switching animation.
+     * @param firstName User's FirstName input data
+     * @param emailAddress User's Email input data
+     * @param password User's password input data
+     * @param websiteAddress User's Website input data
+     */
 
     private void jumpNextFragment(String firstName, String emailAddress, String password, String websiteAddress){
         // Send user input data to next fragment via Bundle

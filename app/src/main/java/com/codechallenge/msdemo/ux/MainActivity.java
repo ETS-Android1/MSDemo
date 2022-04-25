@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // Use fragment to build application interactive View
         LoginFragment loginFragment = new LoginFragment();
         getSupportFragmentManager().beginTransaction().add(R.id.fragment_layout_container, loginFragment).commit();
     }

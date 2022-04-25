@@ -11,7 +11,7 @@ public class LoginModel {
     }
 
     /**
-     * evaluateInput is used to check email address and password is valid or invalid
+     * evaluateInput is used to check the email address and password are valid or invalid
      * @param emailAddress String email address
      * @param passwordLength Integer password length
      * @return

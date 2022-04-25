@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.codechallenge.msdemo.R;
 import com.codechallenge.msdemo.present.LoginController;
@@ -100,13 +101,16 @@ public class LoginFragment extends Fragment {
         switch (inputStatus) {
             case EMAIL_ERROR:
                 editTextEmailAddress.setBackground(gradientDrawableRed);
+                Toast.makeText(getContext(),"Email required and must be valid",Toast.LENGTH_SHORT).show();
                 break;
             case PASSWORD_ERROR:
                 editTextPassword.setBackground(gradientDrawableRed);
+                Toast.makeText(getContext(),"Password required and length must be 8-16",Toast.LENGTH_SHORT).show();
                 break;
             case EMAIL_PASSWORD_ERROR:
                 editTextEmailAddress.setBackground(gradientDrawableRed);
                 editTextPassword.setBackground(gradientDrawableRed);
+                Toast.makeText(getContext(),"Required Email and password",Toast.LENGTH_SHORT).show();
                 break;
             default:
                 break;

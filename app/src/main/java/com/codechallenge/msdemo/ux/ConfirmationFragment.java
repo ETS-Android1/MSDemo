@@ -1,6 +1,5 @@
 package com.codechallenge.msdemo.ux;
 
-import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;

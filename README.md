@@ -15,6 +15,7 @@ OS version: Android 10
 ##### MainActivity
 - Initialization Fragment
 - Declare the overall style of the application
+- Monitor user touch events, judge the state of the soft keyboard and hide the soft keyboard.
 - Hide the system top bar and navigation bar, swipe up from the bottom of the screen to evoke the navigation bar, which will automatically disappear after 3 seconds.
 
 ##### LoginFragment
@@ -28,6 +29,7 @@ OS version: Android 10
 	- The email address is required, the input format must conform to the email address format.
 	- The password is required and the length must be between 8 to 16. The program uses the Android password input type and will automatically hide the password.
 	- The URL is not required.
+- Since the soft keyboard covers part of the UI, while the user is using the soft keyboard to input, the user taps the area outside the soft keyboard to automatically close the soft keyboard.
 - Submit buttons use gradient colors as required by the project.
 - Click the button to verify the validity of the user input information, and if there is an error in the user input information, the corresponding input box will be highlighted, and show a toast to present the error reason. If the user information is valid, forward the user data to ConfirmationFragment via `Bundle` push the current Fragment into the task stack, jump to the ConfirmationFragment at the same time, and display the transition animation.
 

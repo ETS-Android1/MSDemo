@@ -10,7 +10,6 @@ import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 
 import com.codechallenge.msdemo.R;
-import com.codechallenge.msdemo.ux.LoginFragment;
 
 public class MainActivity extends AppCompatActivity {
     private InputMethodManager inputMethodManager;

@@ -96,9 +96,10 @@ public class LoginFragment extends Fragment {
     }
 
     private void changeEditTextStyle(InputStatus inputStatus){
-        editTextEmailAddress.setBackground(gradientDrawableDefault);
-        editTextPassword.setBackground(gradientDrawableDefault);
         switch (inputStatus) {
+            case PASSED:
+                editTextEmailAddress.setBackground(gradientDrawableDefault);
+                editTextPassword.setBackground(gradientDrawableDefault);
             case EMAIL_ERROR:
                 editTextEmailAddress.setBackground(gradientDrawableRed);
                 Toast.makeText(getContext(),"Email required and must be valid",Toast.LENGTH_SHORT).show();

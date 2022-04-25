@@ -5,6 +5,8 @@ import android.graphics.drawable.GradientDrawable;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,8 +16,7 @@ import android.widget.EditText;
 
 import com.codechallenge.msdemo.R;
 import com.codechallenge.msdemo.present.LoginController;
-import com.codechallenge.msdemo.present.LoginPresent;
-import com.codechallenge.msdemo.util.ErrorType;
+import com.codechallenge.msdemo.util.InputStatus;
 
 public class LoginFragment extends Fragment {
 
@@ -62,9 +63,16 @@ public class LoginFragment extends Fragment {
         buttonSubmit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String email = editTextEmailAddress.getText().toString().trim();
+                String emailAddress = editTextEmailAddress.getText().toString().trim();
                 int passwordLength = editTextPassword.getText().toString().trim().length();
-                changeEditTextStyle(loginController.onSubmitted(email, passwordLength));
+                InputStatus inputStatus= loginController.onSubmitted(emailAddress, passwordLength);
+                changeEditTextStyle(inputStatus);
+                if (inputStatus == InputStatus.PASSED) {
+                    String firstName = editTextFirstName.getText().toString();
+                    String password = editTextPassword.getText().toString().trim();
+                    String websiteAddress = editTextWebSiteAddress.getText().toString().trim();
+                    jumpNextFragment(firstName, emailAddress, password, websiteAddress);
+                }
             }
         });
         initUIStyle();
@@ -86,11 +94,10 @@ public class LoginFragment extends Fragment {
         gradientDrawableDefault.setStroke(8, Color.rgb(236, 236, 236));
     }
 
-    private void changeEditTextStyle(ErrorType errorType){
-        // reset
+    private void changeEditTextStyle(InputStatus inputStatus){
         editTextEmailAddress.setBackground(gradientDrawableDefault);
-        editTextPassword.setBackground(gradientDrawableRed);
-        switch (errorType) {
+        editTextPassword.setBackground(gradientDrawableDefault);
+        switch (inputStatus) {
             case EMAIL_ERROR:
                 editTextEmailAddress.setBackground(gradientDrawableRed);
                 break;
@@ -104,6 +111,27 @@ public class LoginFragment extends Fragment {
             default:
                 break;
         }
+    }
+
+    private void jumpNextFragment(String firstName, String emailAddress, String password, String websiteAddress){
+        // Send user input data to next fragment via Bundle
+        Bundle bundle = new Bundle();
+        if (firstName.length() > 0) bundle.putString("name", firstName);
+        bundle.putString("email", emailAddress);
+        bundle.putString("password", password);
+        if (websiteAddress.length() > 0) bundle.putString("website", websiteAddress);
+
+        //Jump next fragment
+        FragmentManager fragmentManager = getActivity().getSupportFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        ConfirmationFragment confirmationFragment = new ConfirmationFragment();
+        confirmationFragment.setArguments(bundle);
+        // fragment switch to next fragment and switch back from next fragment animation effect
+        fragmentTransaction.setCustomAnimations(R.anim.buttom_in, R.anim.buttom_out, R.anim.buttom_in, R.anim.buttom_out);
+        fragmentTransaction.replace(R.id.fragment_layout_container, confirmationFragment);
+        // Push current fragment to task stack, when user press back on navigation bar will pop current fragment
+        fragmentTransaction.addToBackStack(null);
+        fragmentTransaction.commit();
     }
 
 

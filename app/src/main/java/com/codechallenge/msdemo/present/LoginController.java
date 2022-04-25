@@ -1,7 +1,7 @@
 package com.codechallenge.msdemo.present;
 
 import com.codechallenge.msdemo.model.LoginModel;
-import com.codechallenge.msdemo.util.ErrorType;
+import com.codechallenge.msdemo.util.InputStatus;
 
 public class LoginController implements LoginPresent {
     private LoginModel loginModel;
@@ -9,7 +9,7 @@ public class LoginController implements LoginPresent {
         loginModel = new LoginModel();
     }
     @Override
-    public ErrorType onSubmitted(String emailAddress, int passwordLength) {
+    public InputStatus onSubmitted(String emailAddress, int passwordLength) {
         return loginModel.evaluateInput(emailAddress, passwordLength);
     }
 }

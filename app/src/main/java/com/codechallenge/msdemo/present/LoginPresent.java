@@ -1,7 +1,7 @@
 package com.codechallenge.msdemo.present;
 
-import com.codechallenge.msdemo.util.ErrorType;
+import com.codechallenge.msdemo.util.InputStatus;
 
 public interface LoginPresent {
-    ErrorType onSubmitted(String email, int passwordLength);
+    InputStatus onSubmitted(String email, int passwordLength);
 }
